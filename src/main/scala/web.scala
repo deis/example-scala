@@ -23,7 +23,7 @@ class Hello extends Service[HttpRequest, HttpResponse] {
   def apply(req: HttpRequest): Future[HttpResponse] = {
     val response = Response()
     response.setStatusCode(200)
-    response.setContentString("Powered by Deis.")
+    response.setContentString("Powered by" + System.getenv("POWERED_BY"))
     Future(response)
   }
 }
