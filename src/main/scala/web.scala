@@ -21,9 +21,9 @@ object Web {
 
 class Hello extends Service[HttpRequest, HttpResponse] {
   var message : String = System.getenv("POWERED_BY")
-        if (message == null) {
-            message = "Deis";
-        }
+    if (message == null) {
+        message = "Deis";
+    }
   def apply(req: HttpRequest): Future[HttpResponse] = {
     val response = Response()
     response.setStatusCode(200)
