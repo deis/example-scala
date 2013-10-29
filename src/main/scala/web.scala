@@ -20,10 +20,14 @@ object Web {
 }
 
 class Hello extends Service[HttpRequest, HttpResponse] {
+  var message : String = System.getenv("POWERED_BY")
+        if (message == null) {
+            message = "Deis";
+        }
   def apply(req: HttpRequest): Future[HttpResponse] = {
     val response = Response()
     response.setStatusCode(200)
-    response.setContentString("Powered by " + System.getenv("POWERED_BY"))
+    response.setContentString("Powered by " + message)
     Future(response)
   }
 }
