@@ -20,14 +20,11 @@ object Web {
 }
 
 class Hello extends Service[HttpRequest, HttpResponse] {
-  var message : String = System.getenv("POWERED_BY")
-    if (message == null) {
-        message = "Deis";
-    }
+  val message : String = Properties.envOrElse("POWERED_BY", "Deis")
   def apply(req: HttpRequest): Future[HttpResponse] = {
     val response = Response()
     response.setStatusCode(200)
-    response.setContentString("Powered by " + message)
+    response.setContentString("Powered by Scala+" + message)
     Future(response)
   }
 }
